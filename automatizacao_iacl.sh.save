@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "Criando diretorios..."
+
+groupadd projetosA
+groupadd projetosB
+
+echo "Criando diretorios"
+
+mkdir  /desenvolvimentos
+mkdir /vendas
+
+echo "Criando usuarios..."
+
+useradd ana -m -s /bin/bash -p $(openssl passwd -6 Senha123) -G projetosA
+useradd bruno -m -s /bin/bash -p $(openssl passwd -6 Senha123) -G projetosA 
+useradd carla -m -s /bin/bash -p $(openssl passwd -6 Senha123) -G projetosB
+
+chown root:projetosA projetosA/desenvolvimentos
+chown root:projetosB projetosB/vendas
+
+chmod 770 projetosA/desenvolvimentos
+chmod 770 projetosB/vendas
+
+echo "Finalizando...."
